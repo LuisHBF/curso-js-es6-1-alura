@@ -10,9 +10,13 @@ class NegociacaoController{
 
     adiciona(event){
         event.preventDefault();
-        console.log(this.inputQuantidade.value);
-        console.log(this.inputValor.value);
-        console.log(this.inputData.value);
+        let negociacao = new Negociacao(
+            new Date(this.inputData.value.split('-')),
+            this.inputQuantidade.value,
+            this.inputValor.value
+        );
+
+        console.log(negociacao);
     }
 
 }
