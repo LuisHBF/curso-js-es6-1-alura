@@ -3,27 +3,25 @@ class NegociacaoController{
     constructor(){
         let $ = document.querySelector.bind(document);
 
-        this.inputQuantidade = $('#quantidade');
-        this.inputData = $("#data");
-        this.inputValor = $("#valor");
+        this._inputQuantidade = $('#quantidade');
+        this._inputData = $("#data");
+        this._inputValor = $("#valor");
     }
 
     adiciona(event){
         event.preventDefault();
 
-        let data = new Date(...this.inputData.value.split('-')
-        .map((item, indice) => indice == 1 ? item - 1 : item ));
+        let helper = new DateHelper();
+        let data = helper.textoParaData(this._inputData.value);
+        let diaMesAno = helper.dataParaTexto(data);
 
         let negociacao = new Negociacao(
             data,
-            this.inputQuantidade.value,
-            this.inputValor.value
+            this._inputQuantidade.value,
+            this._inputValor.value
         );
 
-        let diaMesAno = negociacao.data.getDate()
-        + '/' + (negociacao.data.getMonth() + 1)
-        + '/' + negociacao.data.getFullYear();
-
+        console.log(negociacao);
         console.log(diaMesAno);
 
     }
